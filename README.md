@@ -54,6 +54,7 @@ In your activity, inject the ViewModel with the `viewModelBinder` delegate:
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
+
     private val viewModel by viewModelBinder<MainActivity, MainViewModel> {
         bind() from provider { MainViewModel(instance()) }
     }
@@ -82,6 +83,7 @@ VieModel:
         // Create mock
         val viewModel = mock<MainViewModel>()
         whenever(viewModel.someMethod()).thenReturn(something)
+	
         // Override injection rule
         viewModel.overrideInjectionRuleForTesting()
 
