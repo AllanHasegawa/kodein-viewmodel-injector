@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def config = rootProject.ext.androidDefaultConfig
+
+    compileSdkVersion config.compileSdkVersion
+
+    defaultConfig {
+        applicationId "io.kodeinViewModelInjector"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner config.testInstrumentationRunner
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled config.buildMinifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE*'
+    }
+}
+
+dependencies {
+    implementation project(":kodein-viewmodel-injector")
+
+    def paths = rootProject.ext.depPaths
+
+    implementation paths.kotlinStd
+    implementation paths.supportAppCompat
+    implementation paths.kodein
+    implementation paths.kodeinConf
+    implementation paths.archComponentsExtensions
+    implementation paths.picasso
+
+    kapt paths.archComponentsCompiler
+
+    testImplementation paths.junit
+    testImplementation paths.junitRunner
+    testImplementation paths.hamkrest
+    testImplementation paths.spek
+    testImplementation paths.spekJUnitEngine
+    testImplementation paths.kotlinReflect
+    testImplementation paths.mockitoKotlin
+
+    androidTestImplementation paths.junit
+    androidTestImplementation paths.junitRunner
+    androidTestImplementation paths.hamkrest
+    androidTestImplementation paths.supportTestRunner
+    androidTestImplementation paths.supportEspresso
+    androidTestImplementation paths.supportEspressoContrib
+    androidTestImplementation paths.kotlinReflect
+    androidTestImplementation paths.mockitoKotlin
+    androidTestImplementation paths.mockitoAndroid
+}
+

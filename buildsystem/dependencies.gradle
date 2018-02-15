@@ -1,0 +1,72 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "http://dl.bintray.com/jetbrains/spek" }
+    }
+}
+
+
+ext {
+    depVersions = [
+            // Common
+            kotlin           : ext.kotlin_version, // from the "buildscript" scope
+            kodein           : '4.1.0',
+
+            // Test
+            junit            : '4.12',
+            junitRunner      : '1.0.0',
+            spek             : '1.1.5',
+            hamkrest         : '1.4.2.2',
+            mockitoKotlin    : '1.5.0',
+
+            // Android
+            supportLib       : '27.0.2',
+            archComponents   : '1.1.0',
+            picasso          : '2.5.2',
+
+            // Android Test
+            supportTestRunner: '1.0.1',
+            supportEspresso  : '3.0.1',
+            mockitoAndroid   : '2.15.0',
+    ]
+
+    depPaths = {
+        def v = ext.depVersions
+        [
+                // Common
+                kotlinStd               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$v.kotlin",
+                kotlinReflect           : "org.jetbrains.kotlin:kotlin-reflect:$v.kotlin",
+                kodein                  : "com.github.salomonbrys.kodein:kodein:$v.kodein",
+                kodeinConf              : "com.github.salomonbrys.kodein:kodein-conf:$v.kodein",
+                junit                   : "junit:junit:$v.junit",
+                junitRunner             : "org.junit.platform:junit-platform-runner:$v.junitRunner",
+                spek                    : "org.jetbrains.spek:spek-api:$v.spek",
+                spekJUnitEngine         : "org.jetbrains.spek:spek-junit-platform-engine:$v.spek",
+                hamkrest                : "com.natpryce:hamkrest:$v.hamkrest",
+                mockitoKotlin           : "com.nhaarman:mockito-kotlin:$v.mockitoKotlin",
+
+                // Android
+                supportAppCompat        : "com.android.support:appcompat-v7:$v.supportLib",
+                supportCompat           : "com.android.support:support-compat:$v.supportLib",
+                supportConstraintLayout : "com.android.support.constraint:constraint-layout:$v.supportConstraintLayout",
+                supportCardView         : "com.android.support:cardview-v7:$v.supportLib",
+                supportRecyclerView     : "com.android.support:recyclerview-v7:$v.supportLib",
+                supportDesign           : "com.android.support:design:$v.supportLib",
+                kodeinAndroid           : "com.github.salomonbrys.kodein:kodein-android:$v.kodein",
+                archComponentsRuntime   : "android.arch.lifecycle:runtime:$v.archComponents",
+                archComponentsViewModel : "android.arch.lifecycle:viewmodel:$v.archComponents",
+                archComponentsExtensions: "android.arch.lifecycle:extensions:$v.archComponents",
+                archComponentsCompiler  : "android.arch.lifecycle:compiler:$v.archComponents",
+                mockitoAndroid          : "org.mockito:mockito-android:$v.mockitoAndroid",
+                picasso                 : "com.squareup.picasso:picasso:$v.picasso",
+
+                // Android Test
+                supportTestRunner       : "com.android.support.test:runner:$v.supportTestRunner",
+                supportEspresso         : "com.android.support.test.espresso:espresso-core:$v.supportEspresso",
+                supportEspressoContrib  : "com.android.support.test.espresso:espresso-contrib:$v.supportEspresso",
+                archComponentsCoreTest  : "android.arch.core:core-testing:$v.archComponents",
+        ]
+    }()
+}
