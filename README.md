@@ -90,7 +90,7 @@ VieModel:
     }
 ```
 
-Check the full sample in the `app` module.
+Check the full sample in the `sample` module.
 
 ## FAQ
 

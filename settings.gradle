@@ -1,1 +1,1 @@
-include ':app', ':kodein-viewmodel-injector'
+include ':sample', ':kodein-viewmodel-injector'
