@@ -20,14 +20,13 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    implementation 'com.github.AllanHasegawa.kodein-viewmodel-injector:kodein-viewmodel-injector:<version>'
+    implementation 'com.github.AllanHasegawa:kodein-viewmodel-injector:<version>'
 }
 ```
 
 Where `<version>` should be replaced with the latest version.
 
-[![Release](https://jitpack.io/v/AllanHasegawa/kodein-viewmodel-injector.svg)]
-(https://jitpack.io/#AllanHasegawa/kodein-viewmodel-injector)
+[![Release](https://jitpack.io/v/AllanHasegawa/kodein-viewmodel-injector.svg)](https://jitpack.io/#AllanHasegawa/kodein-viewmodel-injector)
 
 ## Usage
 
