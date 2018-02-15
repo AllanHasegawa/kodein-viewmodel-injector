@@ -1,4 +1,4 @@
-package kodein.kodein_viewmodel_injector
+package kodeinViewModelInjector
 
 import android.content.Intent
 import android.support.test.espresso.Espresso.onView
@@ -13,12 +13,7 @@ import com.github.salomonbrys.kodein.provider
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import io.kodeinViewModelInjector.R
-import kodeinViewModelInjector.CatService
-import kodeinViewModelInjector.InMemCatService
-import kodeinViewModelInjector.MainActivity
-import kodeinViewModelInjector.MainViewModel
-import kodeinViewModelInjector.kodeinBase
-import kodeinViewModelInjector.overrideInjectionRuleForTesting
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,6 +30,14 @@ class MainActivityTest {
     var activityRule =
             ActivityTestRule(MainActivity::class.java,
                     true, false /* Do not launch activity! */)
+
+    @After
+    fun resetAll() {
+        KodeinViewModelInjector.clearAllInjectionRulesForTesting()
+
+        kodeinBase.clear()
+        kodeinBase.addExtend(kodeinApp)
+    }
 
     @Test
     fun test_with_real_viewmodel() {
@@ -69,6 +72,15 @@ class MainActivityTest {
         kodeinBase.addImport(Kodein.Module {
             bind<CatService>(overrides = true) with provider { InMemCatService(expectedUrl) }
         }, allowOverride = true)
+
+        launchActivity()
+
+        onView(withId(R.id.catPicUrlTv)).check(matches(withText(expectedUrl)))
+    }
+
+    @Test
+    fun test_with_real_viewmodel_2() {
+        val expectedUrl = InMemCatService.aCatUrl
 
         launchActivity()
 

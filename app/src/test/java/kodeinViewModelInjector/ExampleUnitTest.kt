@@ -1,4 +1,4 @@
-package kodein.kodein_viewmodel_injector
+package kodeinViewModelInjector
 
 import org.junit.Test
 
