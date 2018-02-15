@@ -3,8 +3,8 @@ ext {
             compileSdkVersion        : 27,
             minSdkVersion            : 21,
             targetSdkVersion         : 27,
-            versionCode              : 1,
-            versionName              : "1.0",
+            versionCode              : rootProject.ext.version.code(),
+            versionName              : rootProject.ext.version.name(),
             testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner",
 
             buildMinifyEnabled       : false
