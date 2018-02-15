@@ -26,6 +26,9 @@ dependencies {
 
 Where `<version>` should be replaced with the latest version.
 
+[![Release](https://jitpack.io/v/AllanHasegawa/kodein-viewmodel-injector.svg)]
+(https://jitpack.io/#AllanHasegawa/kodein-viewmodel-injector)
+
 ## Usage
 
 Create your kodein container as you usually do, for example:
