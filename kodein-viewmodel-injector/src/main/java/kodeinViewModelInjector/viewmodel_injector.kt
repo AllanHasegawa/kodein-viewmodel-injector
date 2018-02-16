@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentActivity
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.instance
 
-inline fun <ActivityT : FragmentActivity, reified ViewModelT : ViewModel> ActivityT.viewModelBinder(
+inline fun <reified ViewModelT : ViewModel> FragmentActivity.viewModelBinder(
         baseContainer: Kodein = KodeinViewModelInjector.baseContainer,
-        crossinline binder: (Kodein.Builder.(ActivityT) -> Unit)) = lazy {
+        crossinline binder: (Kodein.Builder.() -> Unit)) = lazy {
     ViewModelProviders
             .of(this, object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -20,7 +20,7 @@ inline fun <ActivityT : FragmentActivity, reified ViewModelT : ViewModel> Activi
                         null ->
                             Kodein {
                                 extend(baseContainer)
-                                binder.invoke(this, this@viewModelBinder)
+                                binder.invoke(this)
                             }.run { instance<ViewModelT>() }
                         else -> testViewModel
                     } as T

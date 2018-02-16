@@ -48,7 +48,7 @@ The MainActivity will simply inject the ViewModel.
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModelBinder<MainActivity, MainViewModel> {
+    private val viewModel by viewModelBinder<MainViewModel> {
         bind() from provider { MainViewModel(instance()) }
     }
 

@@ -20,14 +20,13 @@ Add the dependency:
 
 ```groovy
 dependencies {
-    implementation 'com.github.AllanHasegawa.kodein-viewmodel-injector:kodein-viewmodel-injector:<version>'
+    implementation 'com.github.AllanHasegawa:kodein-viewmodel-injector:<version>'
 }
 ```
 
 Where `<version>` should be replaced with the latest version.
 
-[![Release](https://jitpack.io/v/AllanHasegawa/kodein-viewmodel-injector.svg)]
-(https://jitpack.io/#AllanHasegawa/kodein-viewmodel-injector)
+[![Release](https://jitpack.io/v/AllanHasegawa/kodein-viewmodel-injector.svg)](https://jitpack.io/#AllanHasegawa/kodein-viewmodel-injector)
 
 ## Usage
 
@@ -55,7 +54,7 @@ In your activity, inject the ViewModel with the `viewModelBinder` delegate:
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModelBinder<MainActivity, MainViewModel> {
+    private val viewModel by viewModelBinder<MainViewModel> {
         bind() from provider { MainViewModel(instance()) }
     }
 
@@ -83,6 +82,7 @@ VieModel:
         // Create mock
         val viewModel = mock<MainViewModel>()
         whenever(viewModel.someMethod()).thenReturn(something)
+	
         // Override injection rule
         viewModel.overrideInjectionRuleForTesting()
 

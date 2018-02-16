@@ -11,7 +11,7 @@ import io.kodeinViewModelInjector.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModelBinder<MainActivity, MainViewModel> {
+    private val viewModel by viewModelBinder<MainViewModel> {
         bind() from provider { MainViewModel(instance()) }
     }
 
