@@ -1,10 +1,10 @@
 class Version {
     int major = 0
-    int patch = 1
-    int minor = 0
+    int minor = 1
+    int patch = 0
 
     int code() {
-        minor + patch * 1_000 + major * 100_000
+        patch + minor * 1_000 + major * 100_000
     }
 
     String name() {
