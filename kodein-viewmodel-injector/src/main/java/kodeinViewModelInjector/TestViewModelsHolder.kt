@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel
 import java.lang.ref.WeakReference
 
 internal object TestViewModelsHolder {
+    private val VIEW_MODEL_NAME = typeName(ViewModel::class.java)
+
     private val testViewModels = mutableMapOf<String, WeakReference<ViewModel>>()
 
     fun <ViewModelT : ViewModel> getTestViewModel(type: Class<ViewModelT>): ViewModelT? =
@@ -26,6 +28,17 @@ internal object TestViewModelsHolder {
 
     fun reset() = testViewModels.clear()
 
-    private fun <ViewModelT : ViewModel> key(type: Class<ViewModelT>) = typeName(type)
+    private fun <T> key(type: Class<T>): String =
+            typeNamesForThisAndParents(type).last { !it.contains("mock", ignoreCase = true) }
+
+    private fun <T> typeNamesForThisAndParents(source: Class<T>): List<String> {
+        val parent = source.superclass
+        return listOf(typeName(source)) +
+                when {
+                    parent == null || typeName(parent) == VIEW_MODEL_NAME -> emptyList()
+                    else -> typeNamesForThisAndParents(parent)
+                }
+    }
+
     private fun <T> typeName(type: Class<T>): String = type.name
 }
