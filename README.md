@@ -99,7 +99,7 @@ Check the full sample in the `sample` module.
 
 ### Should I use this?
 
-Only if you are not afraid of refactorings <3
+:thinking::thinking::thinking::thinking: 🤷 Go for it! :thumbsup: _(please don't)_
 
 ## LICENSE
 
