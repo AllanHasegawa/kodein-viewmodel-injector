@@ -4,31 +4,21 @@ import android.arch.lifecycle.ViewModel
 import com.github.salomonbrys.kodein.Kodein
 
 object KodeinViewModelInjector {
-    val baseContainer: Kodein by lazy {
-        val container = internalBaseContainerProvider?.invoke()
-                ?: throw kotlin.IllegalStateException(
-                        "KodeinViewModelInjector missing base container provider")
-        internalBaseContainerProvider = null
-        container
-    }
+    val container: Kodein
+        get() = internalContainerProvider?.invoke()
+                ?: throw IllegalStateException("Container provider not set yet")
 
-    private var initialized = false
-    private var internalBaseContainerProvider: (() -> Kodein)? = null
+    private var internalContainerProvider: (() -> Kodein)? = null
 
-    fun init(baseContainerProvider: () -> Kodein) {
-        if (initialized) {
-            throw kotlin.IllegalStateException(
-                    "KodeinViewModelInjector already initialized")
-        }
-        initialized = true
-        KodeinViewModelInjector.internalBaseContainerProvider = baseContainerProvider
+    fun setContainerProvider(containerProvider: () -> Kodein) {
+        KodeinViewModelInjector.internalContainerProvider = containerProvider
     }
 
     fun <ViewModelT : ViewModel> getTestViewModel(type: Class<ViewModelT>): ViewModelT? =
             TestViewModelsHolder.getTestViewModel(type)
 
     fun <ViewModelT : ViewModel> overrideInjectionRuleForTesting(
-            type: Class<ViewModelT>, viewModel: ViewModel) =
+        type: Class<ViewModelT>, viewModel: ViewModel) =
             TestViewModelsHolder.overrideInjectionRuleForTesting(type, viewModel)
 
     fun <ViewModelT : ViewModel> clearInjectionRuleForTesting(type: Class<ViewModelT>) =

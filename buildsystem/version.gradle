@@ -1,7 +1,7 @@
 class Version {
     int major = 0
-    int minor = 2
-    int patch = 1
+    int minor = 3
+    int patch = 0
 
     int code() {
         patch + minor * 1_000 + major * 100_000

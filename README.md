@@ -45,7 +45,7 @@ Then, initialize this lib with the container containing all of the dependencies 
 class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        KodeinViewModelInjector.init { kodeinApp }
+        KodeinViewModelInjector.setContainerProvider { kodeinApp }
     }
 }
 ```
@@ -99,7 +99,7 @@ Check the full sample in the `sample` module.
 
 ### Should I use this?
 
-"No" -- Jake Wharton
+Only if you are not afraid of refactorings <3
 
 ## LICENSE
 

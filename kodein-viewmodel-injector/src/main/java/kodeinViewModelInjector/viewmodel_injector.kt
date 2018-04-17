@@ -8,7 +8,7 @@ import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.instance
 
 inline fun <reified ViewModelT : ViewModel> FragmentActivity.viewModelBinder(
-        baseContainer: Kodein = KodeinViewModelInjector.baseContainer,
+        baseContainer: Kodein = KodeinViewModelInjector.container,
         crossinline binder: (Kodein.Builder.() -> Unit)) = lazy {
     ViewModelProviders
             .of(this, object : ViewModelProvider.Factory {

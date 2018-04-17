@@ -6,6 +6,6 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        KodeinViewModelInjector.init { kodeinBase }
+        KodeinViewModelInjector.setContainerProvider { kodeinBase }
     }
 }
