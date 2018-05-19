@@ -1,7 +1,7 @@
 package kodeinViewModelInjector
 
 import android.arch.lifecycle.ViewModel
-import com.github.salomonbrys.kodein.Kodein
+import org.kodein.di.Kodein
 
 object KodeinViewModelInjector {
     val container: Kodein

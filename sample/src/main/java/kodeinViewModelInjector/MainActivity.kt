@@ -3,12 +3,12 @@ package kodeinViewModelInjector
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.instance
-import com.github.salomonbrys.kodein.provider
 import com.squareup.picasso.Picasso
 import io.kodeinViewModelInjector.R
 import kotlinx.android.synthetic.main.activity_main.*
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModelBinder<MainViewModel> {

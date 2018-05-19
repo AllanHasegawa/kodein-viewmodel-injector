@@ -4,12 +4,12 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.app.FragmentActivity
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.instance
+import org.kodein.di.Kodein
+import org.kodein.di.generic.instance
 
 inline fun <reified ViewModelT : ViewModel> FragmentActivity.viewModelBinder(
-        baseContainer: Kodein = KodeinViewModelInjector.container,
-        crossinline binder: (Kodein.Builder.() -> Unit)) = lazy {
+    baseContainer: Kodein = KodeinViewModelInjector.container,
+    crossinline binder: (Kodein.Builder.() -> Unit)) = lazy {
     ViewModelProviders
             .of(this, object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -21,7 +21,10 @@ inline fun <reified ViewModelT : ViewModel> FragmentActivity.viewModelBinder(
                             Kodein {
                                 extend(baseContainer)
                                 binder.invoke(this)
-                            }.run { instance<ViewModelT>() }
+                            }.run {
+                                val viewModel by instance<ViewModelT>()
+                                viewModel
+                            }
                         else -> testViewModel
                     } as T
                 }

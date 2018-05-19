@@ -1,6 +1,6 @@
 class Version {
     int major = 0
-    int minor = 3
+    int minor = 4
     int patch = 0
 
     int code() {

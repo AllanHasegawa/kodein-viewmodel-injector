@@ -12,7 +12,7 @@ ext {
     depVersions = [
             // Common
             kotlin           : ext.kotlin_version, // from the "buildscript" scope
-            kodein           : '4.1.0',
+            kodein           : '5.0.0',
 
             // Test
             junit            : '4.12',
@@ -36,10 +36,10 @@ ext {
         def v = ext.depVersions
         [
                 // Common
-                kotlinStd               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$v.kotlin",
+                kotlinStd               : "org.jetbrains.kotlin:kotlin-stdlib:$v.kotlin",
                 kotlinReflect           : "org.jetbrains.kotlin:kotlin-reflect:$v.kotlin",
-                kodein                  : "com.github.salomonbrys.kodein:kodein:$v.kodein",
-                kodeinConf              : "com.github.salomonbrys.kodein:kodein-conf:$v.kodein",
+                kodein                  : "org.kodein.di:kodein-di-generic-jvm:$v.kodein",
+                kodeinConf              : "org.kodein.di:kodein-di-conf-jvm:$v.kodein",
                 junit                   : "junit:junit:$v.junit",
                 junitRunner             : "org.junit.platform:junit-platform-runner:$v.junitRunner",
                 spek                    : "org.jetbrains.spek:spek-api:$v.spek",
